@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
+}
+
+
+.contact_section {
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 1rem;
+    background: #fff;
+    height: fit-content;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heading {
+    display: flex;
+    padding: 15px;
+
+}
+
+
+.para {
+    width: 80%;
+    padding: 15px;
+}
+
+.card_section {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 1rem;
+    /* flex-direction:column ; */
+    /* background: aliceblue; */
+    width: 90%;
+}
+
+.first_card {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    flex-direction: column;
+    /* background: #9d9d9d57; */
+    border: 2px dashed rgba(138, 94, 191, 1);
+    padding: 1rem 2rem;
+    width: 35%;
+    margin-right: 1rem;
+    border-radius: 10px;
+    color: #480354;
+}
+
+.row_items {
+    display: flex;
+    justify-content: flex-start;
+    margin: 5px;
+
+
+}
+
+.icons {
+    margin-right: 10%;
+}
+
+
+.second_card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    /* background: #9d9d9d57; */
+    background: linear-gradient(90deg,
+            rgba(238, 109, 152, 1) 15%,
+            rgba(138, 94, 191, 1) 85%);
+    padding: 1rem 2rem;
+    width: 50%;
+    margin-left: 1rem;
+    border-radius: 5px;
+}
+
+.contact_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_items {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.contact_form input:focus {
+    outline: none;
+}
+
+.name,
+.info,
+.message {
+    display: flex;
+}
+
+.submit_btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.submit {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #673ab7;
+    color: #fff;
+}
+
+@media(max-width:1470px) {
+
+    .second_card {
+        width: 60%;
+
+    }
+
+}
+
+@media(max-width:1180px) {
+    .first_card {
+        width: 40%;
+    }
+
+    .second_card {
+        width: 65%;
+
+    }
+
+}
+
+@media(max-width:935px) {
+    .card_section {
+
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .first_card {
+        width: 100%;
+        margin: 2rem 0rem;
+    }
+
+    .second_card {
+        width: 100%;
+        margin: 2rem 0rem;
+
+    }
+}
+
+@media(max-width:510px) {
+    .first_card {
+        width: 100%;
+    }
+
+    /* .second_card{
+        width: 100%;
+      
+    } */
+
+    .name,
+    .info,
+    .message {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input_items {
+        width: 16rem;
+    }
+
+    .para {
+        width: 90%;
+        padding: 15px;
+    }
+
+}

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { requireAuth } = require("../middleware/auth");
 const placementCompany = require("../model/placementCompany");
 const XLSX = require("xlsx");
+const { json } = require("body-parser");
 const detailsSheet = XLSX.readFile("Placement.xlsx");
 // const detailsSheet = XLSX.readFile('https://1drv.ms/x/s!AijzmVsqlu-jglgYmkn6phP_EK0u?e=IZEzyR');
 const sheet_name_list = detailsSheet.SheetNames;
@@ -24,14 +25,20 @@ router.get("/placement/all_companies", (req, res) => {
 });
 
 router.get("/placement/:company_name", (req, res) => {
-  XLSX.findById(req.params.company_name, (err, company) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(newCompany);
-      res.json(company);
-    }
-  });
+  // XLSX.(req.params.company_name, (err, company) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log(newCompany);
+  //     res.json(company);
+  //   }
+  // });
+  // console.log(`${req.params.company_name}`);
+  const mejarArray = XLSX.utils.sheet_to_json(detailsSheet.Sheets[sheet_name_list[0]]);
+  const mejarString = JSON.stringify(Object.assign({},mejarArray));
+  const mejarObj = JSON.parse(mejarString);
+  let companyName = mejarArray.find(comp =>comp.company_name  == req.params.company_name);
+  res.json(companyName);
 });
 
 // to post new company by admin

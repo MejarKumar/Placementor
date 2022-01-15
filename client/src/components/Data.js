@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Accordion, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { Card } from "./HomeComponents/PastRecruiter";
 import axios from "axios";
 const Data = () => {
   const params = useParams();
@@ -9,8 +10,9 @@ const Data = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/${params.type}/${params.id}`)
+      .get(`http://localhost:3000/${params.type}/${params.company_name}`)
       .then((response) => {
+        // console.log(response.data);
         setData(response.data);
       })
       .catch((e) => {
@@ -22,7 +24,26 @@ const Data = () => {
     return <>Not found</>;
   }
   return (
-    <>
+    <div>
+
+{data &&
+          data.map((comp, idx) => (
+            <Card key={idx}>
+              <h3 style={{ textTransform: "uppercase", textAlign: "center" }}>
+                {comp.company_name}
+              </h3>
+              <p>{comp.selected_students}</p>
+              {/* <p>{comp.eligible_branch}</p> */}
+              <p>{comp.CGPA}</p>
+              {comp.logo && (
+                <img style={{ height: "20%" }} src={`${comp.logo}`} alt="" />
+              )}
+            </Card>
+          ))
+        }
+
+
+
       <h1 className=" text-center mt-3"> Selection Process</h1>
       <Container className="sm-6 md-6 lg-6 flex">
         <Accordion defaultActiveKey="1">
@@ -102,7 +123,7 @@ const Data = () => {
           </Accordion.Item>
         </Accordion>
       </Container>
-    </>
+      </div>
   );
 };
 

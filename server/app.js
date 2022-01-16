@@ -10,9 +10,9 @@ const Comment = require("./model/comment");
 const app = express();
 
 const path = require("path");
-// const connectDB = require("./config/db");
+const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
-// connectDB();
+connectDB();
 app.use(express.static("public"));
 app.use(cors());
 
@@ -59,16 +59,18 @@ let transporter = await nodemailer.createTransport({
   secure: false, 
   auth: {
     user: process.env.gmail_Address,
-    pass: process.env.gmail_password 
+    pass: process.env.gmail_password
   },
 });
 
  // send mail with defined transport object
   let info =await transporter.sendMail({
     to: "mejarkumar2003@gmail.com", // list of receivers
-   from: 'mehulagarwal0001@gmail.com', // sender address
+  //  from: 'mehulagarwal0001@gmail.com', 
+  //  from: req.body.email, // sender address
+  replyTo :"mejarsamrat2003@gmail.com",
     subject: "Placementor", // Subject line
-    text: "Hello World...", // plain text body
+    text: req.body.description, // plain text body
     // html: "<b>Hello world?</b>", // html body
   });
   console.log("Message sent: %s", info.messageId);

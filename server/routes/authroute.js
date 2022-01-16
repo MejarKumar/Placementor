@@ -39,7 +39,7 @@ const createToken= (id)=>{
 
 
 router.get('/register',(req,res)=>{
-    console.log("register");
+    res.json("register");
   
    
 });
@@ -51,7 +51,7 @@ router.post('/register',async (req,res)=>{
    const token = createToken(user._id);
    res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
      
-   res.status(201).json({user:user._id,token});
+   res.status(201).json({user:user.email,token});
  
    
     } catch (err){
@@ -71,7 +71,7 @@ router.post("/admin_login",async (req,res)=>{
         const user = await Admin.login(email,password);
         // console.log(user);
         const token = createToken(user._id);
-        res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+        // res.cookie('jwt',token,{maxAge:maxAge*1000});
         res.status(200).json({user:user._id,token});
 
     } catch (err) {

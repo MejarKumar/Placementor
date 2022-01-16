@@ -20,7 +20,7 @@ const sheet_name_list = detailsSheet.SheetNames;
 //   });
 // });
 
-router.get("/placement/all_companies", (req, res) => {
+router.get("/placement/all_companies", requireAuth, (req, res) => {
   res.json(XLSX.utils.sheet_to_json(detailsSheet.Sheets[sheet_name_list[0]]));
 });
 
